@@ -5,14 +5,24 @@ using String = basic::String;
 
 int String::error = 0;
 
-String::String() {
-	content = "uninitialized";
+void String::EmptyInitialization() {
+	content = new char[2];
+	content = "";
 }
-String::String(char* input) :content(input){
+
+String::String() {
+	EmptyInitialization();
+}
+String::String(const char* input){
 	if (input == nullptr) {
-		content = "";
-		error = 5;
+		EmptyInitialization();
+		return;
 	}
+
+	size = strlen(input);
+	content = new char[size + 1];
+	memcpy(content, input, size);
+	content[size] = '\0';
 }
 
 String::~String() {
@@ -29,11 +39,13 @@ int String::GetLastError() const {
 
 String String::operator+(const String& additive) {
 
-	int newSize = this->Size() + additive.Size();
-	char* newContent = new char[newSize];
-	std::copy(this->content, this->content + this->Size(), newContent);
-	std::copy(additive.content, additive.content + additive.Size(), newContent + this->Size());
-	String result(newContent);
+	int newSize = Size() + additive.Size();
+	// + 1 for null terminator \0 
+	char* newContent = new char[newSize + 1];
+	memcpy(newContent, content, size);
+	memcpy(newContent + size, additive.content, additive.size);
+	newContent[newSize] = '\0';
+	String result{ newContent };
 	delete[] newContent;
 	return result;
 }

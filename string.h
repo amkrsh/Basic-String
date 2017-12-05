@@ -7,14 +7,15 @@ namespace basic {
 
 	public:
 		String();
-		String(char* input);
+		String(const char* input);
 		int Size() const;
 		int GetLastError() const;
+		void EmptyInitialization();
 		String operator +(const String& additive);
 		~String();
 	private:
-		char* content = "";
-		int size = 0;
+		char* content;
+		int size = 1;
 		static int error;
 	};
 }
