@@ -26,19 +26,13 @@ String::String(const char* input){
 	}
 
 	size = strlen(input);
-	//Initialization(input);
-	content = new char[size + 1];
-	memcpy(content, input, size);
-	content[size] = '\0';
+	Initialization(input);
 }
 
 String::String(const String& input) {
 
 	size = input.size;
-	//Initialization(input.content);
-	content = new char[size + 1];
-	memcpy(content, input.content, size);
-	content[size] = '\0';
+	Initialization(input.content);
 }
 
 String::~String() {
