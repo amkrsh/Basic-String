@@ -8,15 +8,18 @@ namespace basic {
 	public:
 		String();
 		String(const char* input);
+		String(const String& input);
 		int Size() const;
 		int GetLastError() const;
-		void EmptyInitialization();
+
 		String operator +(const String& additive);
 		~String();
 	private:
 		char* content;
 		int size = 1;
 		static int error;
+		void EmptyInitialization();
+		void String::Initialization(const char* input);
 	};
 }
 #endif

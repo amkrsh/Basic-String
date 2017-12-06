@@ -1,4 +1,5 @@
 #include<algorithm>
+#include<iostream>
 #include "string.h"
 
 using String = basic::String;
@@ -6,10 +7,15 @@ using String = basic::String;
 int String::error = 0;
 
 void String::EmptyInitialization() {
-	content = new char[2];
-	content = "";
+	content = new char[1];
+	content[0] = '\0';
 }
 
+void String::Initialization(const char* input) {
+	content = new char[size + 1];
+	memcpy(content, input, size);
+	content[size] = '\0';
+}
 String::String() {
 	EmptyInitialization();
 }
@@ -20,8 +26,18 @@ String::String(const char* input){
 	}
 
 	size = strlen(input);
+	//Initialization(input);
 	content = new char[size + 1];
 	memcpy(content, input, size);
+	content[size] = '\0';
+}
+
+String::String(const String& input) {
+
+	size = input.size;
+	//Initialization(input.content);
+	content = new char[size + 1];
+	memcpy(content, input.content, size);
 	content[size] = '\0';
 }
 
