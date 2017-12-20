@@ -9,15 +9,17 @@ namespace basic {
 		String();
 		String(const char* input);
 		String(const String& input);
-		int Size() const;
+		int size() const;
 		int GetLastError() const;
+		char at(int index) const;
+
 
 		String operator +(const String& additive);
-		char operator [](const int index);
+		char operator [](const int index) const;
 		~String();
 	private:
 		char* content;
-		int size = 1;
+		int _size = 1;
 		static int error;
 		void EmptyInitialization();
 		void String::Initialization(const char* input);

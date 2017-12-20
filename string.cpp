@@ -12,9 +12,9 @@ void String::EmptyInitialization() {
 }
 
 void String::Initialization(const char* input) {
-	content = new char[size + 1];
-	memcpy(content, input, size);
-	content[size] = '\0';
+	content = new char[_size + 1];
+	memcpy(content, input, _size);
+	content[_size] = '\0';
 }
 String::String() {
 	EmptyInitialization();
@@ -25,13 +25,13 @@ String::String(const char* input){
 		return;
 	}
 
-	size = strlen(input);
+	_size = strlen(input);
 	Initialization(input);
 }
 
 String::String(const String& input) {
 
-	size = input.size;
+	_size = input._size;
 	Initialization(input.content);
 }
 
@@ -39,27 +39,32 @@ String::~String() {
 	delete[] content;
 }
 
-int String::Size() const {
-	return size;
+int String::size() const {
+	return _size;
 }
 
 int String::GetLastError() const {
 	return error;
 }
+char String::at(int index) const {
+	if (index >= _size)
+		throw "Trying to acess basic::String character beyond it's length";
+	return content[index];
+}
 
 String String::operator+(const String& additive) {
 
-	int newSize = Size() + additive.Size();
+	int newSize = size() + additive.size();
 	// + 1 for null terminator \0 
 	char* newContent = new char[newSize + 1];
-	memcpy(newContent, content, size);
-	memcpy(newContent + size, additive.content, additive.size);
+	memcpy(newContent, content, _size);
+	memcpy(newContent + _size, additive.content, additive._size);
 	newContent[newSize] = '\0';
 	String result{ newContent };
 	delete[] newContent;
 	return result;
 }
-char String::operator [](const int index) {
+char String::operator [](const int index) const {
 	
 	return content[index];
 }
