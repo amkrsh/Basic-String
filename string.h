@@ -13,6 +13,7 @@ namespace basic {
 		int GetLastError() const;
 
 		String operator +(const String& additive);
+		char operator [](const int index);
 		~String();
 	private:
 		char* content;

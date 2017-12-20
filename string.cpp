@@ -59,3 +59,7 @@ String String::operator+(const String& additive) {
 	delete[] newContent;
 	return result;
 }
+char String::operator [](const int index) {
+	
+	return content[index];
+}

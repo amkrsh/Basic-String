@@ -12,6 +12,5 @@ int main(int argc, char argv[]) {
 
 	const basic::String s5{ "b" };
 	std::cout << s5.Size() << std::endl;
-
 	return 0;
 }
