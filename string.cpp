@@ -46,7 +46,7 @@ int String::size() const {
 int String::GetLastError() const {
 	return error;
 }
-char String::at(int index) const {
+char& String::at(int index) const {
 	if (index >= _size)
 		throw "Trying to acess basic::String character beyond it's length";
 	return content[index];

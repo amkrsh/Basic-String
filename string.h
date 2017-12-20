@@ -11,7 +11,7 @@ namespace basic {
 		String(const String& input);
 		int size() const;
 		int GetLastError() const;
-		char at(int index) const;
+		char& at(int index) const;
 
 
 		String operator +(const String& additive);
